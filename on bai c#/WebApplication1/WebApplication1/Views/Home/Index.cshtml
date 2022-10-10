@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div id="app">
+
+    <div class="login-cover">
+            <h1>Đăng nhập</h1>
+            <input placeholder="Nhập tài khoản" />
+            <input placeholder="Nhập mật khẩu"/>
+    </div>
+
+
+    <button v-on:click="nhan"> Đăng nhập </button>
+    <div v-for="item of info">
+        <p>{{item.username}}</p>
+        <p>{{item.password}}</p>
+    </div>
+
+</div>
+
+https://helpex.vn/question/lam-cach-nao-de-trich-xuat-du-lieu-tu-datatable-60955759f45eca37f4c1d0df 
+https://freetuts.net/sqldataadapter-trong-c-scharp-5446.html
+https://www.youtube.com/watch?v=qS833HGKPD8&t=2025s
+https://mydatabase.com.br/index.php/25-categorias/programacao/c-csharp/66-retrieving-data-using-a-datareader
+
+
+<script type="module">
+    import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+
+    createApp({
+
+    data() {
+    return {
+    message: 'Hello Vue!',
+    info: []
+    }
+    },
+    methods: {
+    nhan(){
+        axios.get('http://localhost:64463/user/get')
+            .then(response => this.info.push(response.data))
+    }
+    }
+    }).mount('#app')
+</script>
+
+<style>
+    .primary {
+        color: red;
+    }
+
+    #app{
+        width: 100%;
+    }
+
+    .login-cover{
+       display: flexbox;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+    }
+</style>
